@@ -1,4 +1,4 @@
-module github/goantor/web
+module github.com/goantor/web
 
 go 1.19
 
