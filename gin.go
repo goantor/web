@@ -2,7 +2,6 @@ package web
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -47,10 +46,13 @@ func (s *GinService) Routers(routeFunc GinRouteFunc) {
 	routeFunc(s.handler)
 }
 
-func (s *GinService) Shutdown(ctx context.Context) {
-	if err := s.server.Shutdown(ctx); err != nil {
-		if !errors.Is(err, http.ErrServerClosed) {
-			panic(err)
-		}
-	}
+func (s *GinService) Shutdown(ctx context.Context) error {
+
+	//if err := s.server.Shutdown(ctx); err != nil {
+	//	if !errors.Is(err, http.ErrServerClosed) {
+	//		panic(err)
+	//	}
+	//}
+
+	return s.server.Shutdown(ctx)
 }
