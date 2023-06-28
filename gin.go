@@ -47,9 +47,7 @@ func (s *GinService) Routers(routeFunc GinRouteFunc) {
 	routeFunc(s.handler)
 }
 
-func (s *GinService) Shutdown() {
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*2)
-	defer cancel()
+func (s *GinService) Shutdown(ctx context.Context) {
 	if err := s.server.Shutdown(ctx); err != nil {
 		if !errors.Is(err, http.ErrServerClosed) {
 			panic(err)
